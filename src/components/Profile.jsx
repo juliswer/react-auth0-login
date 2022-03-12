@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {useAuth0} from '@auth0/auth0-react';
 import LoginButton from './LoginButton';
+import JSONPretty from 'react-json-pretty';
 
 const Profile = () => {
 
@@ -8,7 +9,7 @@ const Profile = () => {
 
     useEffect(() => {
         if(!user) return <LoginButton />
-    }, []);
+    }, [user]);
 
   return (
     <div>
@@ -17,9 +18,7 @@ const Profile = () => {
                 <img src={user.picture} alt={user.name} />
                 <h2>{user.name}</h2>
                 <p>{user.email}</p>
-                <pre>
-                    {JSON.stringify(user)}
-                </pre>
+                <JSONPretty data={user}/>
             </div>
         )}
     </div>
