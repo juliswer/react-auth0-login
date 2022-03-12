@@ -1,28 +1,20 @@
-import React, {useEffect} from 'react'
-import {useAuth0} from '@auth0/auth0-react';
-import LoginButton from './LoginButton';
-import JSONPretty from 'react-json-pretty';
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import JSONPretty from "react-json-pretty";
 
 const Profile = () => {
-
-    const {user} = useAuth0();
-
-    useEffect(() => {
-        if(!user) return <LoginButton />
-    }, [user]);
+  const { user, isAuthenticated } = useAuth0();
 
   return (
-    <div>
-        {user && (
-            <div>
-                <img src={user.picture} alt={user.name} />
-                <h2>{user.name}</h2>
-                <p>{user.email}</p>
-                <JSONPretty data={user}/>
-            </div>
-        )}
-    </div>
-  )
-}
+    isAuthenticated && (
+      <div>
+        <img src={user.picture} alt={user.name} />
+        <h2>{user.name}</h2>
+        <p>{user.email}</p>
+        <JSONPretty data={user} />
+      </div>
+    )
+  );
+};
 
-export default Profile
+export default Profile;
