@@ -3,15 +3,14 @@ import Loader from 'react-loader-spinner'
 
 const Spinner = ({message}) => {
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full">
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 'auto'}}>
         <Loader 
-            type="Circles"
+            type="Lines"
             color="#00BFFF"
             height={50}
             width={200}
-            className="m-5"
         />
-        <p className="text-lg text-center px-2">{message}</p>
+        <p>{message}</p>
     </div>
   )
 }
